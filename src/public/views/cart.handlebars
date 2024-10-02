@@ -1,0 +1,33 @@
+<h1>Productos del carrito</h1>
+<div class="contTotalEnlace">
+<div class="contElace">
+<a href="/products"> <button> Productos</button></a>
+
+<a href="/api/sessions/profile"> <button>Perfil </button> </a>
+
+<a href="/api/carts/:cid/purchase"> <button>Comprar Carrito </button> </a>
+
+</div>
+
+</div>
+<ul class="contTotalCard">
+
+    {{#each products}}
+     
+    <li>
+        <article class="contCard">
+            <h2>{{title}}</h2> <!-- Cambiado de this.title a this.pid.title -->
+            <img class="imgProduct" src="{{thumbnail}}" alt="{{title}}"> <!-- Cambiado de this.thumbnail a this.pid.thumbnail -->
+            <p>{{description}}</p> <!-- Cambiado de this.description a this.pid.description -->
+            <h3>${{price}}</h3> <!-- Cambiado de this.price a this.pid.price -->
+            <p>Cantidad: {{quantity}}</p>
+            <button class="BotonEliminar" data-product-id="{{pid}}"  data-user-id="{{../userId}}" class="boton" type="submit">Eliminar Producto</button>
+        </article>
+    </li>
+    {{/each}}
+</ul>
+
+ 
+
+<script src="../js/logicaProducts.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.all.min.js"></script>
