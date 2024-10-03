@@ -14,7 +14,7 @@ router.get("/products", viewsController.loadProducts.bind(viewsController));
 
 router.get("/cart/:cid", viewsController.loadCart.bind(viewsController));
 
-//router.get("/confirmation",)
+
 
 
 router.get('/users', isAuthenticated, admin, viewsController.getUserList);

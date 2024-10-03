@@ -47,23 +47,22 @@ class ViewsController {
     async loadProducts(req, res) {
         try {
             let page = parseInt(req.query.page) || 1;
-            // const welcome = req.query.welcome || '';
-            // const username = req.session.user ? (req.session.user.username || req.session.user.email) : '';
+           
 
             // Obtén el nombre de usuario y el mensaje de bienvenida de la sesión
             const username = req.session.user ? (req.session.user.username || req.session.user.email) : '';
             const welcomeMessage = req.session.welcomeMessage || ''; // Obtén el mensaje de bienvenida de la sesión
 
+          
+           
             const productos = await productModel.paginate({}, { page, limit: 6, lean: true });
 
-            productos.prevLink = productos.hasPrevPage ? `http://localhost:8080/products?page=${productos.prevPage}` : '#';
-            productos.nextLink = productos.hasNextPage ? `http://localhost:8080/products?page=${productos.nextPage}` : '#';
+
+            productos.prevLink = productos.hasPrevPage ? `/products?page=${productos.prevPage}` : '#';
+            productos.nextLink = productos.hasNextPage ? `/products?page=${productos.nextPage}` : '#';
             productos.isValid = !(page <= 0 || page > productos.totalPages);
 
-            //let welcomeMessage = "";
-           // if (welcome === "1") {
-            //    welcomeMessage = `¡Bienvenido/a, <strong>${username}</strong>, a nuestra tienda en línea!`;
-            //}
+
 
             if (req.headers['content-type'] === 'application/json') {
                 return res.json(productos.docs);
