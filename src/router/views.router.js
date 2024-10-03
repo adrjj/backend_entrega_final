@@ -27,7 +27,7 @@ router.delete("/users",isAuthenticated,admin,viewsController.deleteInactiveUsers
 
 
 router.get('/', (req, res) => {
-    res.redirect('/api/products');
+    res.redirect('/products');
 });
 
 module.exports = router;
